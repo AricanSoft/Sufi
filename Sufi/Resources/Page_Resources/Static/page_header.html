@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{title}</title>
+
+    <style>
+
+        html, body {
+
+            margin: 0;
+
+            width: 100%;
+            height: 100%;
+
+            font-family: "Segoe UI", Arial;
+            font-size: 20px;
+
+            user-select: none;
+
+            overflow: hidden;
+
+        }
+
+        .Header {
+
+            display: flex;
+            align-items: center;
+
+            width: 100%;
+            height: 54px;
+
+            background-color: dodgerblue;
+            color: white;
+            box-shadow: 1px 3px 3px lightgray;
+
+        }
+
+        #logo {
+
+            width: 250px;
+            height: 54px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: whitesmoke;
+        }
+
+        a:active {
+            color: lightgray;
+        }
+
+        a:visited {
+            color: white;
+        }
+
+    </style>
+
+    <script>{jquery}</script>
+</head>
+<body>
+<div class="Header">
+    <a href="javascript:void(0)" onclick="showSettings()"><span id="logo">Elementium Browser</span></a>
+    <div class="header_buttons">
+        <a href="xale://history">Geçmiş</a>
+        <a href="xale://settings">Ayarlar</a>
+    </div>
+</div>
+

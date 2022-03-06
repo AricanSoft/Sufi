@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sufi", "ElementiumBrowser\Sufi.csproj", "{E2B86F18-E787-499B-A0C4-85D1F7469B16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sufibyte", "Sufibyte\Sufibyte.csproj", "{A5084564-7115-4328-8998-BB8F6AFDDF2F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E2B86F18-E787-499B-A0C4-85D1F7469B16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2B86F18-E787-499B-A0C4-85D1F7469B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2B86F18-E787-499B-A0C4-85D1F7469B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2B86F18-E787-499B-A0C4-85D1F7469B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5084564-7115-4328-8998-BB8F6AFDDF2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5084564-7115-4328-8998-BB8F6AFDDF2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5084564-7115-4328-8998-BB8F6AFDDF2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5084564-7115-4328-8998-BB8F6AFDDF2F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCF99E17-AE76-4BD8-BEE4-BBE939EF9876}
+	EndGlobalSection
+EndGlobal
