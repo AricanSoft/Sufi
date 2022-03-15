@@ -1,0 +1,328 @@
+<style>
+    .content {
+
+        display: flex;
+        justify-content: center;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .history-data {
+
+        margin-top: 32px;
+
+        width: 90%;
+        height: 60%;
+
+        background-color: whitesmoke;
+        color: dimgray;
+
+        border-radius: 7px;
+        box-shadow: 3px 3px 3px lightgray;
+
+    }
+
+    .history-header {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+        height: 48px;
+
+        border-bottom: 2px solid lightgray;
+
+    }
+
+    .clear-button {
+
+        margin-right: 10px;
+
+        cursor: pointer;
+
+        width: 248px;
+        height: 32px;
+
+        background-color: indianred;
+        color: whitesmoke;
+
+        border-radius: 7px;
+
+        text-align: center;
+
+    }
+
+    #history-title {
+        margin-left: 10px;
+    }
+
+    th, td {
+
+        text-align: center;
+
+        width: auto;
+
+    }
+
+    tr:hover{
+        background-color:whitesmoke;
+    }
+
+    .active-tr{
+        background-color:whitesmoke;
+    }
+
+    table {
+
+        width: 100%;
+
+        background-color: white;
+
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .clear-history-data-panel {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+        position: absolute;
+
+        background-color: rgba(0, 0, 0, 0.7);
+
+        width: 100%;
+        height: 100%;
+
+        transition: all 0.5s;
+    }
+
+    .clear-area {
+        width: 360px;
+        height: 360px;
+
+
+        color: dimgrey;
+
+        background-color: white;
+        border-radius: 3px;
+    }
+
+    #clear-title {
+        margin-left: 10px;
+    }
+
+    .clear-event-area {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-direction: column;
+
+        width: 100%;
+        height: 85%;
+    }
+
+    .clear-select {
+
+        width: 154px;
+        height: 32px;
+
+        font-size: 20px;
+    }
+
+    .clear-option {
+
+        font-size: 20px;
+
+    }
+
+    .clear-button-ok {
+
+        padding: 7px 7px 7px 7px;
+
+        width: 96px;
+        height: 32px;
+
+        background-color: indianred;
+
+        border-radius: 3px;
+    }
+
+    .clear-button-cancel {
+
+        padding: 7px 7px 7px 7px;
+
+        width: 96px;
+        height: 32px;
+
+        background-color: dimgrey;
+
+        border-radius: 3px;
+    }
+
+    .twrapper {
+        display: block;
+
+        width: 100%;
+        height: 90%;
+
+        overflow-y: scroll;
+        border-radius: 3px;
+    }
+
+    .th.fixed {
+        top: 0;
+        z-index: 2;
+        position: sticky;
+        background-color: white;
+    }
+
+    .active-remove-button {
+        background-color: dodgerblue;
+    }
+
+    .remove-button {
+        margin-right: 10px;
+        cursor: pointer;
+        width: 24px;
+        height: 24px;
+
+        background-color:transparent;
+        color: dimgray;
+        
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        border:none;
+        border-radius: 7px;
+    }
+
+    .remove-button:hover {
+        background-color:dimgray;
+        color:white;
+
+        transition:all .5s;
+    }
+</style>
+
+<div class="content">
+
+    <div class="clear-history-data-panel" id="clear-history-data-panel" style="visibility: hidden">
+        <div class="clear-area">
+            <div class="history-header"><span id="clear-title">Tarayıcı verilerini temizle</span></div>
+            <div class="clear-event-area">
+                <span id="clear-event-area-container">
+                    <label for="clear-select" style="margin-right: 7px">Silinecek Tarih</label>
+                    <select class="clear-select" id="clear-select">
+                        <option class="clear-option" value="1" Selected>Tümü</option>
+                        <option class="clear-option" value="2">1 Saat</option>
+                        <option class="clear-option" value="3">1 Gün</option>
+                        <option class="clear-option" value="4">1 Ay</option>
+                        <option class="clear-option" value="5">1 Yıl</option>
+                    </select>
+                </span>
+                <span style="margin-top: 32px">
+                    <a href="javascript:void(0)" class="clear-button-ok" onclick="clearBrowserData()">Temizle</a>
+                    <a href="javascript:void(0)" class="clear-button-cancel" onclick="cancelClear()">İptal</a>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div id="historyDatas" class="history-data">
+        <div class="history-header"><span id="history-title"><b>Geçmiş</b></span>
+            <a class="clear-button"
+               id="clear-browser-data" onclick="showClearData()">Tarayıcı verilerini temizle</a></div>
+
+        <div class="twrapper">
+            <table>
+                <thead>
+                <tr>
+                    <th>Site Adı</th>
+                    <th>Bağlantı</th>
+                    <th>Ziyaret Tarihi</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody class="table-history-data">
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+
+<script>
+
+    cancelClear();
+
+    $('td').click(function () {
+
+        $('.active-tr').removeClass('active-tr');
+
+        var td_parent = $(this).parent();
+        td_parent.addClass('active-tr');
+    });
+
+    $(document).on("click", '.remove-button',function () {
+
+        var history_id = $(this).parent().parent().find('#row_id').val();
+
+        $.ajax({
+            url: "?deletehistory&id=" + history_id,
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                $('.table-history-data').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            url: "?getList",
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+                $('.table-history-data').html(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+        });
+    });
+    
+
+    function showClearData() {
+        document.getElementById("clear-history-data-panel").style.visibility = "visible";
+    }
+
+    function cancelClear() {
+        document.getElementById("clear-history-data-panel").style.visibility = "hidden";
+    }
+
+    function clearBrowserData() {
+        $.ajax({
+            url: "clearbrowserdata#" + e.options[e.selectedIndex].value.toString(),
+            type: "GET",
+            success: function (data, textStatus, jqXHR) {
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+            }
+
+        });
+    }
+
+</script>
+
